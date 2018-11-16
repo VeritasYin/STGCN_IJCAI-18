@@ -20,7 +20,7 @@ def Scaled_Laplacian(W):
     L = -W
     for i in range(n):
         d.append(np.sum(W[i, :]))
-        L[i, i] = d[i]
+        L[i, i] += d[i]
     for i in range(n):
         for j in range(n):
             if (d[i] > 0) and (d[j] > 0):

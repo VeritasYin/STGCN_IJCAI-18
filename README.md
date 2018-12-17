@@ -51,6 +51,11 @@ Our code is based on Python3 (>=3.5). There are a few dependencies to run the co
 ### Data Source
 **[PeMSD7](http://pems.dot.ca.gov/)** was collected from Caltrans Performance Measurement System (PeMS) in real-time by over 39, 000 sensor stations, deployed across the major metropolitan areas of California state highway system. The dataset is also aggregated into 5-minute interval from 30-second data samples. We randomly select a medium and a large scale among the District 7 of California containing **228** and **1, 026** stations, labeled as PeMSD7(M) and PeMSD7(L), respectively, as data sources. The time range of PeMSD7 dataset is in the weekdays of **May and June of 2012**. We select the first month of historical speed records as training set, and the rest serves as validation and test set respectively. 
 
+### Data Format
+PeMS_Sta_V.csv : Historicial Speed Rocords [n_timesteps * num_road].  
+
+PeMS_Sta_Dis.csv : Weighted Adjacency Matrix [num_road * num_road].
+
 ### Data Preprocessing
 The standard time interval in two datasets is set to 5 minutes. Thus, every node of the road graph contains 288 data points per day. The linear interpolation method is used to fill missing values after data cleaning. In addition, data input are normalized by Z-Score method.  
 In PeMSD7, the adjacency matrix of the road graph is computed based on the distances among stations in the traffic network. The weighted adjacency matrix W can be formed as,  

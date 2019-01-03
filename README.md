@@ -64,7 +64,7 @@ In PeMSD7, the adjacency matrix of the road graph is computed based on the dista
 All the tests use 60 minutes as the historical time window, a.k.a. 12 observed data points (M = 12) are used to forecast traffic conditions in the next 15, 30, and 45 minutes (H = 3, 6, 9).
 
 ## Citation
-Please refer to our paper. Bing Yu*, Haoteng Yin*, Zhanxing Zhu. [Spatio-temporal Graph Convolutional Neural Network: A Deep Learning Framework for Traffic Forecasting](https://www.ijcai.org/proceedings/2018/0505). In *Proceedings of the 27th International Joint Conference on Artificial Intelligence (IJCAI)*, 2018
+Please refer to our paper. Bing Yu*, Haoteng Yin*, Zhanxing Zhu. [Spatio-temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting](https://www.ijcai.org/proceedings/2018/0505). In *Proceedings of the 27th International Joint Conference on Artificial Intelligence (IJCAI)*, 2018
 
     @inproceedings{yu2018spatio,
         title={Spatio-temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting},

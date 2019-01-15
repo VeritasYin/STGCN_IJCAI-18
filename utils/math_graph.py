@@ -82,8 +82,9 @@ def weight_matrix(file_path, sigma2=0.1, epsilon=0.5, scaling=True):
     except FileNotFoundError:
         print(f'ERROR: input file was not found in {file_path}.')
 
-    # check whether W is in 0/1.
-    if np.max(W) <= 1 and np.mix(W) >= 0:
+    # check whether W is a 0/1 matrix.
+    if set(np.unique(W)) == {0, 1}:
+        print('The input graph is a 0/1 matrix; set "scaling" to False.')
         scaling = False
 
     if scaling:

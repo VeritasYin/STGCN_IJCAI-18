@@ -27,7 +27,7 @@ def build_model(inputs, n_his, Ks, Kt, blocks, keep_prob):
     # ST-Block
     for i, channels in enumerate(blocks):
         x = st_conv_block(x, Ks, Kt, channels, i, keep_prob, act_func='GLU')
-        Ko -= 2 * (K - 1)
+        Ko -= 2 * (Kt - 1)
 
     # Output Layer
     if Ko > 1:

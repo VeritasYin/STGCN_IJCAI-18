@@ -2,7 +2,7 @@
 <p align="center">
     <a href="https://www.ijcai.org/proceedings/2018/0505.pdf"><img src="https://img.shields.io/badge/-Paper-grey?logo=read%20the%20docs&logoColor=green" alt="Paper"></a>
     <a href="https://github.com/VeritasYin/STGCN_IJCAI-18"><img src="https://img.shields.io/badge/-Github-grey?logo=github" alt="Github"></a>
-    <a href="https://github.com/VeritasYin/STGCN_IJCAI-18/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD%202--Clause-red.svg"></a>
+    <a href="https://github.com/VeritasYin/STGCN_IJCAI-18/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-BSD%202--Clause-red.svg"></a>
     <a href="https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/root.html#torch_geometric_temporal.nn.attention.stgcn.STConv"><img src="https://img.shields.io/badge/PyG_Temporal-STConv-blue" alt=PyG_Temporal"></a>
     <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVeritasYin%2FSTGCN_IJCAI-18&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Hits&edge_flat=false"/></a>
 </p>
@@ -55,13 +55,13 @@ Our code is based on Python3 (>= 3.6). There are a few dependencies to run the c
 * SciPy (>= 1.1.0)
 * Pandas (>= 0.23)
 
-The implementation of Spatio-Temporal Graph Convolutional Layer with PyTorch is available in [PyG Temporal](https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/root.html#temporal-graph-attention-layers). You might refer to [STConv](https://github.com/benedekrozemberczki/pytorch_geometric_temporal/blob/master/torch_geometric_temporal/nn/attention/stgcn.py) that supports ChebConv Graph Convolutions.
+The implementation of Spatio-Temporal Graph Convolutional Layer with PyTorch is available in [PyG Temporal](https://github.com/benedekrozemberczki/pytorch_geometric_temporal/blob/master/torch_geometric_temporal/nn/attention/stgcn.py). You might refer to [STConv](https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/root.html#temporal-graph-attention-layers) that supports ChebConv Graph Convolutions.
 
 ## Dataset
 ### Data Source
 **[PeMSD7](http://pems.dot.ca.gov/)** was collected from Caltrans Performance Measurement System (PeMS) in real-time by over 39, 000 sensor stations, deployed across the major metropolitan areas of California state highway system. The dataset is also aggregated into 5-minute interval from 30-second data samples. We randomly select a medium and a large scale among the District 7 of California containing **228** and **1, 026** stations, labeled as PeMSD7(M) and PeMSD7(L), respectively, as data sources. The time range of PeMSD7 dataset is in the weekdays of **May and June of 2012**. We select the first month of historical speed records as training set, and the rest serves as validation and test set respectively. 
 
-Both PeMSD7 M and L are now available under the `data_loader` folder. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
+Both PeMSD7 M and L are now available under `data_loader` folder. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
 
 ### Data Format
 You can make your customized dataset by the following format:  
@@ -79,7 +79,7 @@ All of our experiments use 60 minutes as the historical time window, a.k.a. 12 o
 
 ## Model Details
 ### Training
-python main.py --n_route {`$num_route`} --graph {`$weight_matrix_file`.csv} 
+python main.py --n_route {`$num_route`} --graph {`$weight_matrix_file`} 
 
 **Default settings**:  
 * Training configs: argparse is used for passing parameters. 

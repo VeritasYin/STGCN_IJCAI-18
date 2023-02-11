@@ -1,4 +1,12 @@
-# Spatio-Temporal Graph Convolutional Networks: <br> A Deep Learning Framework for Traffic Forecasting
+<h1 align="center"><ins>S</ins>patio-<ins>T</ins>emporal <ins>G</ins>raph <ins>C</ins>onvolutional <ins>N</ins>etworks: <br> A Deep Learning Framework for Traffic Forecasting</h1>
+<p align="center">
+    <a href="https://www.ijcai.org/proceedings/2018/0505.pdf"><img src="https://img.shields.io/badge/-Paper-grey?logo=read%20the%20docs&logoColor=green" alt="Paper"></a>
+    <a href="https://github.com/VeritasYin/STGCN_IJCAI-18"><img src="https://img.shields.io/badge/-Github-grey?logo=github" alt="Github"></a>
+    <a href="https://github.com/VeritasYin/STGCN_IJCAI-18/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD%202--Clause-red.svg"></a>
+    <a href="https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/root.html#torch_geometric_temporal.nn.attention.stgcn.STConv"><img src="https://img.shields.io/badge/PyG_Temporal-STConv-blue" alt=PyG_Temporal"></a>
+    <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVeritasYin%2FSTGCN_IJCAI-18&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Hits&edge_flat=false"/></a>
+</p>
+
 ## Introduction 
 We propose a novel deep learning framework, **STGCN**, to tackle time series prediction problem in traffic domain. Instead of applying regular convolutional and recurrent units, we formulate the problem on graphs and build the model with complete convolutional structures. To the best of our knowledge, it is the first time that to apply purely convolutional structures to extract spatio-temporal features simultaneously from graph-structured time series in a traffic study. 
 
@@ -40,18 +48,20 @@ The framework STGCN consists of two spatio-temporal convolutional blocks (ST-Con
   
 **Fig. 4: Time consumptions of training on the dataset PeMSD7 (M, left) and (L, right)**
 
-## Prerequisites
+## Requirements
 Our code is based on Python3 (>= 3.6). There are a few dependencies to run the code. The major libraries are listed as follows:
 * TensorFlow (>= 1.9.0)
 * NumPy (>= 1.15)
 * SciPy (>= 1.1.0)
 * Pandas (>= 0.23)
 
+The implementation of Spatio-Temporal Graph Convolutional Layer with PyTorch is available in [PyG Temporal](https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/root.html#temporal-graph-attention-layers). You might refer to [STConv](https://github.com/benedekrozemberczki/pytorch_geometric_temporal/blob/master/torch_geometric_temporal/nn/attention/stgcn.py) that supports ChebConv Graph Convolutions.
+
 ## Dataset
 ### Data Source
 **[PeMSD7](http://pems.dot.ca.gov/)** was collected from Caltrans Performance Measurement System (PeMS) in real-time by over 39, 000 sensor stations, deployed across the major metropolitan areas of California state highway system. The dataset is also aggregated into 5-minute interval from 30-second data samples. We randomly select a medium and a large scale among the District 7 of California containing **228** and **1, 026** stations, labeled as PeMSD7(M) and PeMSD7(L), respectively, as data sources. The time range of PeMSD7 dataset is in the weekdays of **May and June of 2012**. We select the first month of historical speed records as training set, and the rest serves as validation and test set respectively. 
 
-Both PeMSD7 M and L are now available under the folder of `data_loader`. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
+Both PeMSD7 M and L are now available under the `data_loader` folder. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
 
 ### Data Format
 You can make your customized dataset by the following format:  
@@ -69,14 +79,14 @@ All of our experiments use 60 minutes as the historical time window, a.k.a. 12 o
 
 ## Model Details
 ### Training
-python main.py --n_route {`$num_route`} --graph {`$weight_matrix`.csv} 
+python main.py --n_route {`$num_route`} --graph {`$weight_matrix_file`.csv} 
 
 **Default settings**:  
 * Training configs: argparse is used for passing parameters. 
     * n_route=228, graph='default', ks=3, kt=3, n_his=12, n_pred=9 
     * batch_size=50, epoch=50, lr=0.001, opt='RMSProp', inf_mode='merge', save=10
 * Data source will be searched in dataset_dir = './dataset', including speed records and the weight matrix.
-* Trained models will be saved in save_path = './output/models' every {`args.save`=10%} epochs.
+* Trained models will be saved in save_path = './output/models' every `args.save=10` epochs.
 * Training logs will be saved in sum_path = './output/tensorboard'.  
 
 Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the batch size of 50 and n_route of 228.
@@ -110,7 +120,8 @@ Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the ba
 
 ## Updates
 **Feb. 11, 2022**:
-* Dataset PeMS-L (1,026 nodes) released.
+* Dataset PeMS-L (1,026 nodes) released. 
+* Fix the issue in size calculation of temporal channel. Thanks to @KingWang93 and @cheershuaizhao.
 
 **Apr. 18, 2019**: 
 * Dataset PeMS-M (228 nodes) released.  

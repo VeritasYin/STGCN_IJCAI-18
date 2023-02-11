@@ -51,14 +51,14 @@ Our code is based on Python3 (>= 3.6). There are a few dependencies to run the c
 ### Data Source
 **[PeMSD7](http://pems.dot.ca.gov/)** was collected from Caltrans Performance Measurement System (PeMS) in real-time by over 39, 000 sensor stations, deployed across the major metropolitan areas of California state highway system. The dataset is also aggregated into 5-minute interval from 30-second data samples. We randomly select a medium and a large scale among the District 7 of California containing **228** and **1, 026** stations, labeled as PeMSD7(M) and PeMSD7(L), respectively, as data sources. The time range of PeMSD7 dataset is in the weekdays of **May and June of 2012**. We select the first month of historical speed records as training set, and the rest serves as validation and test set respectively. 
 
-For detailed introduction of dataset PeMS download, please refer to [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6).
+Both PeMSD7 M and L are now available under the folder of `data_loader`. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
 
 ### Data Format
 You can make your customized dataset by the following format:  
-- PeMSD7_V_{%num_route%}.csv : Historical Speed Records with shape of [len_seq * num_road] (len_seq = day_slot * num_dates).
-- PeMSD7_W_{%num_route%}.csv : Weighted Adjacency Matrix with shape of [num_road * num_road].
+- PeMSD7_V_{`$num_route`}.csv : Historical Speed Records with shape of [len_seq * num_road] (len_seq = day_slot * num_dates).
+- PeMSD7_W_{`$num_route`}.csv : Weighted Adjacency Matrix with shape of [num_road * num_road].
 
-Note: please replace the %num_route% with the number of routes in your dataset. '*.csv' should not contain any index or header in the file.
+Note: please replace the `$num_route` with the number of routes in your dataset. '*.csv' should not contain any index or header in the file.
 
 ### Data Preprocessing
 The standard time interval is set to 5 minutes. Thus, every node of the road graph contains **288** data points per day (day_slot = 288). The linear interpolation method is used to fill missing values after data cleaning. In addition, data input are normalized by Z-Score method.  
@@ -69,14 +69,14 @@ All of our experiments use 60 minutes as the historical time window, a.k.a. 12 o
 
 ## Model Details
 ### Training
-python main.py --n_route {%num_route%} --graph {%weight_matrix.csv%} 
+python main.py --n_route {`$num_route`} --graph {`$weight_matrix`.csv} 
 
 **Default settings**:  
 * Training configs: argparse is used for passing parameters. 
     * n_route=228, graph='default', ks=3, kt=3, n_his=12, n_pred=9 
     * batch_size=50, epoch=50, lr=0.001, opt='RMSProp', inf_mode='merge', save=10
 * Data source will be searched in dataset_dir = './dataset', including speed records and the weight matrix.
-* Trained models will be saved in save_path = './output/models' every {%args.save=10%} epochs.
+* Trained models will be saved in save_path = './output/models' every {`args.save`=10%} epochs.
 * Training logs will be saved in sum_path = './output/tensorboard'.  
 
 Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the batch size of 50 and n_route of 228.
@@ -88,7 +88,9 @@ Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the ba
 │   └── __init__.py
 ├── dataset
 │   ├── PeMSD7_V_228.csv
-│   └── PeMSD7_W_228.csv
+│   ├── PeMSD7_W_228.csv
+│   ├── PeMSD7_V_1026.csv
+│   └── PeMSD7_W_1026.csv
 ├── main.py
 ├── models
 │   ├── base_model.py
@@ -107,6 +109,12 @@ Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the ba
 ```
 
 ## Updates
+**Feb. 11, 2022**:
+* Dataset PeMS-L (1,026 nodes) released.
+
+**Apr. 18, 2019**: 
+* Dataset PeMS-M (228 nodes) released.  
+  
 **Jan. 14, 2019**: 
 * Code refactoring based on the [Tensorflow-Project-Template](https://github.com/MrGemy95/Tensorflow-Project-Template), following the PEP 8 code style; 
 * Function model_save(), model_test() and tensorboard support are added; 

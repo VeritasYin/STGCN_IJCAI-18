@@ -61,7 +61,7 @@ The implementation of Spatio-Temporal Graph Convolutional Layer with PyTorch is 
 ### Data Source
 **[PeMSD7](http://pems.dot.ca.gov/)** was collected from Caltrans Performance Measurement System (PeMS) in real-time by over 39, 000 sensor stations, deployed across the major metropolitan areas of California state highway system. The dataset is also aggregated into 5-minute interval from 30-second data samples. We randomly select a medium and a large scale among the District 7 of California containing **228** and **1, 026** stations, labeled as PeMSD7(M) and PeMSD7(L), respectively, as data sources. The time range of PeMSD7 dataset is in the weekdays of **May and June of 2012**. We select the first month of historical speed records as training set, and the rest serves as validation and test set respectively. 
 
-Both PeMSD7 M and L are now available under `data_loader` folder. Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
+Dataset PeMSD7(M/L) is now available under `dataset` folder (station list included). Please refer [issue #6](https://github.com/VeritasYin/STGCN_IJCAI-18/issues/6) for how to download metadata from PeMS.
 
 ### Data Format
 You can make your customized dataset by the following format:  
@@ -119,12 +119,15 @@ Note: it normally takes around 6s on a NVIDIA TITAN Xp for one epoch with the ba
 ```
 
 ## Updates
+**Feb. 22, 2022**:
+* Sensor Station List of PeMSD7-M released.
+
 **Feb. 11, 2022**:
-* Dataset PeMS-L (1,026 nodes) released. 
+* Dataset PeMSD7-L (1,026 nodes) released. 
 * Fix the issue in size calculation of temporal channel. Thanks to @KingWang93 and @cheershuaizhao.
 
 **Apr. 18, 2019**: 
-* Dataset PeMS-M (228 nodes) released.  
+* Dataset PeMSD7-M (228 nodes) released.  
   
 **Jan. 14, 2019**: 
 * Code refactoring based on the [Tensorflow-Project-Template](https://github.com/MrGemy95/Tensorflow-Project-Template), following the PEP 8 code style; 

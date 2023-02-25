@@ -11,19 +11,21 @@
 We propose a novel deep learning framework, **STGCN**, to tackle time series prediction problem in traffic domain. Instead of applying regular convolutional and recurrent units, we formulate the problem on graphs and build the model with complete convolutional structures. To the best of our knowledge, it is the first time that to apply purely convolutional structures to extract spatio-temporal features simultaneously from graph-structured time series in a traffic study. 
 
 ## Problem Formulation
-Traffic forecast is a typical time-series prediction problem, i.e. predicting the most likely traffic measurements (e.g. speed or traffic flow) in the next *H* time steps given the previous *M* observations from traffic network *G* as, 
-<p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=\hat{v}_{t&plus;1},&space;...,&space;\hat{v}_{t&plus;H}=\mathop{\arg\max}_{v_{t&plus;1},&space;...,&space;v_{t&plus;H}}&space;\log&space;P(v_{t&plus;1},&space;...,v_{t&plus;H}|v_{t-M&plus;1},&space;...,v_t;G)." target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{v}_{t&plus;1},&space;...,&space;\hat{v}_{t&plus;H}=\mathop{\arg\max}_{v_{t&plus;1},&space;...,&space;v_{t&plus;H}}&space;\log&space;P(v_{t&plus;1},&space;...,v_{t&plus;H}|v_{t-M&plus;1},&space;...,v_t;G)." title="\hat{v}_{t+1}, ..., \hat{v}_{t+H}=\mathop{\arg\max}_{v_{t+1}, ..., v_{t+H}} \log P(v_{t+1}, ...,v_{t+H}|v_{t-M+1}, ...,v_t;G)." /></a></p>
+Traffic forecast is a typical time-series prediction problem, i.e. predicting the most likely traffic measurements (e.g. speed or traffic flow) in the next $H$ time steps given the previous $M$ observations from traffic network $G$ as, 
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\large&space;\hat{v}_{t&plus;1},&space;...,&space;\hat{v}_{t&plus;H}=\mathop{\arg\max}_{v_{t&plus;1},&space;...,&space;v_{t&plus;H}}&space;\log&space;P(v_{t&plus;1},&space;...,v_{t&plus;H}|v_{t-M&plus;1},&space;...,v_t;G)"/>
+</p>
   
 <p align="center"><img width="30%" height="30%" src="figures/Graph_Structured_Traffic_Data.png"></p> 
   
 **Fig.1 Graph-structured traffic data.**  
-Each <a href="https://www.codecogs.com/eqnedit.php?latex=v_t" target="_blank"><img src="https://latex.codecogs.com/gif.latex?v_t" title="v_t" /></a>  indicates a frame of current traffic status at time step *t*, which is recorded in a graph-structured data matrix.
+Each $v_t$ indicates a frame of current traffic status at time step $t$, which is recorded in a graph-structured data matrix.
 
 ## Network Structure
 <p align="center"><img src="figures/STGCN.png" width="50%" height="50%"></p>
   
 **Fig. 2 Architecture of spatio-temporal graph convolutional networks.**  
-The framework STGCN consists of two spatio-temporal convolutional blocks (ST-Conv blocks) and a fully-connected output layer in the end. Each ST-Conv block contains two temporal gated convolution layers and one spatial graph convolution layer in the middle. The residual connection and bottleneck strategy are applied inside each block. The input <a href="https://www.codecogs.com/eqnedit.php?latex=v_{t-M&plus;1},&space;...,&space;v_t" target="_blank"><img src="https://latex.codecogs.com/gif.latex?v_{t-M&plus;1},&space;...,&space;v_t" title="v_{t-M+1}, ..., v_t" /></a> is uniformly processed by ST-Conv blocks to explore spatial and temporal dependencies coherently. Comprehensive features are integrated by an output layer to generate the final prediction <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{v}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{v}" title="\hat{v}" /></a>. 
+The framework STGCN consists of two spatio-temporal convolutional blocks (ST-Conv blocks) and a fully-connected output layer in the end. Each ST-Conv block contains two temporal gated convolution layers and one spatial graph convolution layer in the middle. The residual connection and bottleneck strategy are applied inside each block. The input $v_{t-M+1}, ..., v_t$ is uniformly processed by ST-Conv blocks to explore spatial and temporal dependencies coherently. Comprehensive features are integrated by an output layer to generate the final prediction $\hat{v}$. 
 
 ## Results  
 |      Model      |                    | PeMSD7(M) (15/30/45 min) |                    |                    | PeMSD7(L) (15/30/45 min) |                    |
@@ -73,7 +75,9 @@ Note: please replace the `$num_route` with the number of routes in your dataset.
 ### Data Preprocessing
 The standard time interval is set to 5 minutes. Thus, every node of the road graph contains **288** data points per day (day_slot = 288). The linear interpolation method is used to fill missing values after data cleaning. In addition, data input are normalized by Z-Score method.  
 In PeMSD7, the adjacency matrix of the road graph is computed based on the distances among stations in the traffic network. The weighted adjacency matrix W can be formed as,  
-<p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=w_{ij}=\left\{&space;\begin{aligned}&space;&\exp(-\frac{{d_{ij}^2}}{{\sigma^2}}),~i&space;\neq&space;j~\text{and}~\exp(-\frac{{d_{ij}^2}}{{\sigma^2}})&space;\geq&space;\epsilon\\&space;&0~~~~~~~~~~~~~,~\text{otherwise}.&space;\end{aligned}&space;\right." target="_blank"><img src="https://latex.codecogs.com/gif.latex?w_{ij}=\left\{&space;\begin{aligned}&space;&\exp(-\frac{{d_{ij}^2}}{{\sigma^2}}),~i&space;\neq&space;j~\text{and}~\exp(-\frac{{d_{ij}^2}}{{\sigma^2}})&space;\geq&space;\epsilon\\&space;&0~~~~~~~~~~~~~,~\text{otherwise}.&space;\end{aligned}&space;\right." title="w_{ij}=\left\{ \begin{aligned} &\exp(-\frac{{d_{ij}^2}}{{\sigma^2}}),~i \neq j~\text{and}~\exp(-\frac{{d_{ij}^2}}{{\sigma^2}}) \geq \epsilon\\ &0~~~~~~~~~~~~~,~\text{otherwise}. \end{aligned} \right." /></a></p>
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\large&space;w_{ij}=\left\{&space;\begin{aligned}&space;&\exp(-\frac{{d_{ij}^2}}{{\sigma^2}}),~i&space;\neq&space;j~\text{and}~\exp(-\frac{{d_{ij}^2}}{{\sigma^2}})&space;\geq&space;\epsilon\\&space;&0\qquad\qquad,~\text{otherwise}.&space;\end{aligned}&space;\right."/>
+</p>
   
 All of our experiments use 60 minutes as the historical time window, a.k.a. 12 observed data points (M = 12) are used to forecast traffic conditions in the next 15, 30, and 45 minutes (H = 3, 6, 9).
 

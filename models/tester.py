@@ -42,7 +42,7 @@ def multi_pred(sess, y_pred, seq, batch_size, n_his, n_pred, step_idx, dynamic_b
             test_seq[:, n_his - 1, :, :] = pred
             step_list.append(pred)
         pred_list.append(step_list)
-    #  pred_array -> [n_pred, batch_size, n_route, C_0)
+    #  pred_array -> [n_pred, len(seq), n_route, C_0)
     pred_array = np.concatenate(pred_list, axis=1)
     return pred_array[step_idx], pred_array.shape[1]
 

@@ -122,10 +122,10 @@ Please refer to our paper: Bing Yu*, Haoteng Yin*, Zhanxing Zhu. [Spatio-tempora
 This project is licensed under the BSD 2-Clause License - see the [LICENSE](LICENSE) file for details.
 
 **Star History**  
-<a href="https://star-history.com/#VeritasYin/STGCN_IJCAI-18&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date" />
-  </picture>
-</a>
+  <a href="https://star-history.dera.page/#VeritasYin/STGCN_IJCAI-18&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date" />
+      <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=VeritasYin/STGCN_IJCAI-18&type=Date" />
+    </picture>
+  </a>
